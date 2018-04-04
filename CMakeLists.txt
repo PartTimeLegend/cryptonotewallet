@@ -12,9 +12,9 @@ set(CRYPTONOTE_LIB cryptonote)
 
 include_directories(${CMAKE_BINARY_DIR}
     src
-    cryptonote/external
-    cryptonote/include
-    cryptonote/src)
+    katonycoin/external
+    katonycoin/include
+    katonycoin/src)
 
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -35,7 +35,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 set(VERSION "")
-configure_file("cryptonote/src/version.h.in" "version.h")
+configure_file("katonycoin/src/version.h.in" "version.h")
 configure_file("src/CryptoNoteWalletConfig.h.in" "CryptoNoteWalletConfig.h")
 
 add_definitions(-DGIT_REVISION=\"${GIT_REVISION}\")
@@ -43,130 +43,130 @@ add_definitions(-DGIT_REVISION=\"${GIT_REVISION}\")
 set(CMAKE_AUTOMOC ON)
 
 set(CRYPTONOTE_SOURCES
-  cryptonote/external/miniupnpc/connecthostport.c
-  cryptonote/external/miniupnpc/igd_desc_parse.c
-  cryptonote/external/miniupnpc/minisoap.c
-  cryptonote/external/miniupnpc/miniupnpc.c
-  cryptonote/external/miniupnpc/miniwget.c
-  cryptonote/external/miniupnpc/minixml.c
-  cryptonote/external/miniupnpc/portlistingparse.c
-  cryptonote/external/miniupnpc/receivedata.c
-  cryptonote/external/miniupnpc/upnpcommands.c
-  cryptonote/external/miniupnpc/upnpreplyparse.c
-  cryptonote/src/Common/Base58.cpp
-  cryptonote/src/Common/CommandLine.cpp
-  cryptonote/src/Common/Util.cpp
-  cryptonote/src/Common/StringTools.cpp
-  cryptonote/src/Common/JsonValue.cpp
-  cryptonote/src/Common/ConsoleTools.cpp
-  cryptonote/src/Common/MemoryInputStream.cpp
-  cryptonote/src/Common/PathTools.cpp
-  cryptonote/src/Common/StdInputStream.cpp
-  cryptonote/src/Common/StdOutputStream.cpp
-  cryptonote/src/Common/StreamTools.cpp
-  cryptonote/src/Common/StringOutputStream.cpp
-  cryptonote/src/Common/StringView.cpp
-  cryptonote/src/Common/VectorOutputStream.cpp
-  cryptonote/src/crypto/blake256.c
-  cryptonote/src/crypto/chacha8.c
-  cryptonote/src/crypto/crypto-ops-data.c
-  cryptonote/src/crypto/crypto-ops.c
-  cryptonote/src/crypto/crypto.cpp
-  cryptonote/src/crypto/groestl.c
-  cryptonote/src/crypto/hash-extra-blake.c
-  cryptonote/src/crypto/hash-extra-groestl.c
-  cryptonote/src/crypto/hash-extra-jh.c
-  cryptonote/src/crypto/hash-extra-skein.c
-  cryptonote/src/crypto/hash.c
-  cryptonote/src/crypto/jh.c
-  cryptonote/src/crypto/keccak.c
-  cryptonote/src/crypto/oaes_lib.c
-  cryptonote/src/crypto/random.c
-  cryptonote/src/crypto/skein.c
-  cryptonote/src/crypto/slow-hash.c
-  cryptonote/src/crypto/slow-hash.cpp
-  cryptonote/src/crypto/tree-hash.c
-  cryptonote/src/CryptoNoteCore/BlockchainIndices.cpp
-  cryptonote/src/CryptoNoteCore/BlockchainMessages.cpp
-  cryptonote/src/CryptoNoteCore/BlockIndex.cpp
-  cryptonote/src/CryptoNoteCore/CoreConfig.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteBasic.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteTools.cpp
-  cryptonote/src/CryptoNoteCore/Currency.cpp
-  cryptonote/src/CryptoNoteCore/MinerConfig.cpp
-  cryptonote/src/CryptoNoteCore/Transaction.cpp
-  cryptonote/src/CryptoNoteCore/Account.cpp
-  cryptonote/src/CryptoNoteCore/Blockchain.cpp
-  cryptonote/src/CryptoNoteCore/Checkpoints.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteBasicImpl.cpp
-  cryptonote/src/CryptoNoteCore/Core.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteFormatUtils.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteSerialization.cpp
-  cryptonote/src/CryptoNoteCore/Difficulty.cpp
-  cryptonote/src/CryptoNoteCore/IBlock.cpp
-  cryptonote/src/CryptoNoteCore/Miner.cpp
-  cryptonote/src/CryptoNoteCore/TransactionExtra.cpp
-  cryptonote/src/CryptoNoteCore/TransactionPool.cpp
-  cryptonote/src/CryptoNoteCore/TransactionPrefixImpl.cpp
-  cryptonote/src/CryptoNoteCore/TransactionUtils.cpp
-  cryptonote/src/InProcessNode/InProcessNode.cpp
-  cryptonote/src/InProcessNode/InProcessNodeErrors.cpp
-  cryptonote/src/NodeRpcProxy/NodeErrors.cpp
-  cryptonote/src/NodeRpcProxy/NodeRpcProxy.cpp
-  cryptonote/src/P2p/NetNodeConfig.cpp
-  cryptonote/src/Serialization/BinaryInputStreamSerializer.cpp
-  cryptonote/src/Serialization/BinaryOutputStreamSerializer.cpp
-  cryptonote/src/Serialization/JsonInputValueSerializer.cpp
-  cryptonote/src/Serialization/JsonOutputStreamSerializer.cpp
-  cryptonote/src/Serialization/KVBinaryInputStreamSerializer.cpp
-  cryptonote/src/Serialization/KVBinaryOutputStreamSerializer.cpp
-  cryptonote/src/Serialization/SerializationOverloads.cpp
-  cryptonote/src/Transfers/BlockchainSynchronizer.cpp
-  cryptonote/src/Transfers/SynchronizationState.cpp
-  cryptonote/src/Transfers/TransfersConsumer.cpp
-  cryptonote/src/Transfers/TransfersContainer.cpp
-  cryptonote/src/Transfers/TransfersSubscription.cpp
-  cryptonote/src/Transfers/TransfersSynchronizer.cpp
-  cryptonote/src/Wallet/LegacyKeysImporter.cpp
-  cryptonote/src/Wallet/WalletAsyncContextCounter.cpp
-  cryptonote/src/Wallet/WalletErrors.cpp
-  cryptonote/src/WalletLegacy/KeysStorage.cpp
-  cryptonote/src/WalletLegacy/WalletLegacy.cpp
-  cryptonote/src/WalletLegacy/WalletHelper.cpp
-  cryptonote/src/WalletLegacy/WalletLegacySerializer.cpp
-  cryptonote/src/WalletLegacy/WalletLegacySerialization.cpp
-  cryptonote/src/WalletLegacy/WalletTransactionSender.cpp
-  cryptonote/src/WalletLegacy/WalletUnconfirmedTransactions.cpp
-  cryptonote/src/WalletLegacy/WalletUserTransactionsCache.cpp
-  cryptonote/src/System/ContextGroup.cpp
-  cryptonote/src/System/Event.cpp
-  cryptonote/src/System/EventLock.cpp
-  cryptonote/src/System/InterruptedException.cpp
-  cryptonote/src/System/Ipv4Address.cpp
-  cryptonote/src/System/TcpStream.cpp
-  cryptonote/src/HTTP/HttpRequest.cpp
-  cryptonote/src/HTTP/HttpParser.cpp
-  cryptonote/src/HTTP/HttpParserErrorCodes.cpp
-  cryptonote/src/HTTP/HttpResponse.cpp
-  cryptonote/src/Rpc/HttpClient.cpp
-  cryptonote/src/Rpc/JsonRpc.cpp
-  cryptonote/src/P2p/NetNode.cpp
-  cryptonote/src/P2p/LevinProtocol.cpp
-  cryptonote/src/P2p/NetNodeConfig.cpp
-  cryptonote/src/P2p/PeerListManager.cpp
-  cryptonote/src/CryptoNoteProtocol/CryptoNoteProtocolHandler.cpp
-  cryptonote/src/Logging/ILogger.cpp
-  cryptonote/src/Logging/LoggerGroup.cpp
-  cryptonote/src/Logging/CommonLogger.cpp
-  cryptonote/src/Logging/LoggerManager.cpp
-  cryptonote/src/Logging/FileLogger.cpp
-  cryptonote/src/Logging/StreamLogger.cpp
-  cryptonote/src/Logging/ConsoleLogger.cpp
-  cryptonote/src/Logging/LoggerMessage.cpp
-  cryptonote/src/Logging/LoggerRef.cpp
-  cryptonote/src/BlockchainExplorer/BlockchainExplorer.cpp
-  cryptonote/src/BlockchainExplorer/BlockchainExplorerDataBuilder.cpp
-  cryptonote/src/BlockchainExplorer/BlockchainExplorerErrors.cpp
+  katonycoin/external/miniupnpc/connecthostport.c
+  katonycoin/external/miniupnpc/igd_desc_parse.c
+  katonycoin/external/miniupnpc/minisoap.c
+  katonycoin/external/miniupnpc/miniupnpc.c
+  katonycoin/external/miniupnpc/miniwget.c
+  katonycoin/external/miniupnpc/minixml.c
+  katonycoin/external/miniupnpc/portlistingparse.c
+  katonycoin/external/miniupnpc/receivedata.c
+  katonycoin/external/miniupnpc/upnpcommands.c
+  katonycoin/external/miniupnpc/upnpreplyparse.c
+  katonycoin/src/Common/Base58.cpp
+  katonycoin/src/Common/CommandLine.cpp
+  katonycoin/src/Common/Util.cpp
+  katonycoin/src/Common/StringTools.cpp
+  katonycoin/src/Common/JsonValue.cpp
+  katonycoin/src/Common/ConsoleTools.cpp
+  katonycoin/src/Common/MemoryInputStream.cpp
+  katonycoin/src/Common/PathTools.cpp
+  katonycoin/src/Common/StdInputStream.cpp
+  katonycoin/src/Common/StdOutputStream.cpp
+  katonycoin/src/Common/StreamTools.cpp
+  katonycoin/src/Common/StringOutputStream.cpp
+  katonycoin/src/Common/StringView.cpp
+  katonycoin/src/Common/VectorOutputStream.cpp
+  katonycoin/src/crypto/blake256.c
+  katonycoin/src/crypto/chacha8.c
+  katonycoin/src/crypto/crypto-ops-data.c
+  katonycoin/src/crypto/crypto-ops.c
+  katonycoin/src/crypto/crypto.cpp
+  katonycoin/src/crypto/groestl.c
+  katonycoin/src/crypto/hash-extra-blake.c
+  katonycoin/src/crypto/hash-extra-groestl.c
+  katonycoin/src/crypto/hash-extra-jh.c
+  katonycoin/src/crypto/hash-extra-skein.c
+  katonycoin/src/crypto/hash.c
+  katonycoin/src/crypto/jh.c
+  katonycoin/src/crypto/keccak.c
+  katonycoin/src/crypto/oaes_lib.c
+  katonycoin/src/crypto/random.c
+  katonycoin/src/crypto/skein.c
+  katonycoin/src/crypto/slow-hash.c
+  katonycoin/src/crypto/slow-hash.cpp
+  katonycoin/src/crypto/tree-hash.c
+  katonycoin/src/CryptoNoteCore/BlockchainIndices.cpp
+  katonycoin/src/CryptoNoteCore/BlockchainMessages.cpp
+  katonycoin/src/CryptoNoteCore/BlockIndex.cpp
+  katonycoin/src/CryptoNoteCore/CoreConfig.cpp
+  katonycoin/src/CryptoNoteCore/CryptoNoteBasic.cpp
+  katonycoin/src/CryptoNoteCore/CryptoNoteTools.cpp
+  katonycoin/src/CryptoNoteCore/Currency.cpp
+  katonycoin/src/CryptoNoteCore/MinerConfig.cpp
+  katonycoin/src/CryptoNoteCore/Transaction.cpp
+  katonycoin/src/CryptoNoteCore/Account.cpp
+  katonycoin/src/CryptoNoteCore/Blockchain.cpp
+  katonycoin/src/CryptoNoteCore/Checkpoints.cpp
+  katonycoin/src/CryptoNoteCore/CryptoNoteBasicImpl.cpp
+  katonycoin/src/CryptoNoteCore/Core.cpp
+  katonycoin/src/CryptoNoteCore/CryptoNoteFormatUtils.cpp
+  katonycoin/src/CryptoNoteCore/CryptoNoteSerialization.cpp
+  katonycoin/src/CryptoNoteCore/Difficulty.cpp
+  katonycoin/src/CryptoNoteCore/IBlock.cpp
+  katonycoin/src/CryptoNoteCore/Miner.cpp
+  katonycoin/src/CryptoNoteCore/TransactionExtra.cpp
+  katonycoin/src/CryptoNoteCore/TransactionPool.cpp
+  katonycoin/src/CryptoNoteCore/TransactionPrefixImpl.cpp
+  katonycoin/src/CryptoNoteCore/TransactionUtils.cpp
+  katonycoin/src/InProcessNode/InProcessNode.cpp
+  katonycoin/src/InProcessNode/InProcessNodeErrors.cpp
+  katonycoin/src/NodeRpcProxy/NodeErrors.cpp
+  katonycoin/src/NodeRpcProxy/NodeRpcProxy.cpp
+  katonycoin/src/P2p/NetNodeConfig.cpp
+  katonycoin/src/Serialization/BinaryInputStreamSerializer.cpp
+  katonycoin/src/Serialization/BinaryOutputStreamSerializer.cpp
+  katonycoin/src/Serialization/JsonInputValueSerializer.cpp
+  katonycoin/src/Serialization/JsonOutputStreamSerializer.cpp
+  katonycoin/src/Serialization/KVBinaryInputStreamSerializer.cpp
+  katonycoin/src/Serialization/KVBinaryOutputStreamSerializer.cpp
+  katonycoin/src/Serialization/SerializationOverloads.cpp
+  katonycoin/src/Transfers/BlockchainSynchronizer.cpp
+  katonycoin/src/Transfers/SynchronizationState.cpp
+  katonycoin/src/Transfers/TransfersConsumer.cpp
+  katonycoin/src/Transfers/TransfersContainer.cpp
+  katonycoin/src/Transfers/TransfersSubscription.cpp
+  katonycoin/src/Transfers/TransfersSynchronizer.cpp
+  katonycoin/src/Wallet/LegacyKeysImporter.cpp
+  katonycoin/src/Wallet/WalletAsyncContextCounter.cpp
+  katonycoin/src/Wallet/WalletErrors.cpp
+  katonycoin/src/WalletLegacy/KeysStorage.cpp
+  katonycoin/src/WalletLegacy/WalletLegacy.cpp
+  katonycoin/src/WalletLegacy/WalletHelper.cpp
+  katonycoin/src/WalletLegacy/WalletLegacySerializer.cpp
+  katonycoin/src/WalletLegacy/WalletLegacySerialization.cpp
+  katonycoin/src/WalletLegacy/WalletTransactionSender.cpp
+  katonycoin/src/WalletLegacy/WalletUnconfirmedTransactions.cpp
+  katonycoin/src/WalletLegacy/WalletUserTransactionsCache.cpp
+  katonycoin/src/System/ContextGroup.cpp
+  katonycoin/src/System/Event.cpp
+  katonycoin/src/System/EventLock.cpp
+  katonycoin/src/System/InterruptedException.cpp
+  katonycoin/src/System/Ipv4Address.cpp
+  katonycoin/src/System/TcpStream.cpp
+  katonycoin/src/HTTP/HttpRequest.cpp
+  katonycoin/src/HTTP/HttpParser.cpp
+  katonycoin/src/HTTP/HttpParserErrorCodes.cpp
+  katonycoin/src/HTTP/HttpResponse.cpp
+  katonycoin/src/Rpc/HttpClient.cpp
+  katonycoin/src/Rpc/JsonRpc.cpp
+  katonycoin/src/P2p/NetNode.cpp
+  katonycoin/src/P2p/LevinProtocol.cpp
+  katonycoin/src/P2p/NetNodeConfig.cpp
+  katonycoin/src/P2p/PeerListManager.cpp
+  katonycoin/src/CryptoNoteProtocol/CryptoNoteProtocolHandler.cpp
+  katonycoin/src/Logging/ILogger.cpp
+  katonycoin/src/Logging/LoggerGroup.cpp
+  katonycoin/src/Logging/CommonLogger.cpp
+  katonycoin/src/Logging/LoggerManager.cpp
+  katonycoin/src/Logging/FileLogger.cpp
+  katonycoin/src/Logging/StreamLogger.cpp
+  katonycoin/src/Logging/ConsoleLogger.cpp
+  katonycoin/src/Logging/LoggerMessage.cpp
+  katonycoin/src/Logging/LoggerRef.cpp
+  katonycoin/src/BlockchainExplorer/BlockchainExplorer.cpp
+  katonycoin/src/BlockchainExplorer/BlockchainExplorerDataBuilder.cpp
+  katonycoin/src/BlockchainExplorer/BlockchainExplorerErrors.cpp
 )
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
@@ -184,7 +184,7 @@ if (WIN32)
 	message(FATAL_ERROR "Only MSVC is supported on this platform")
   endif ()
   add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600 /DSTATICLIB)
-  include_directories(cryptonote/src/platform/msc)
+  include_directories(katonycoin/src/platform/msc)
 
   set(PLATFORM_DIR Windows)
   set(BUILD_PLATFORM WIN32)
@@ -192,7 +192,7 @@ if (WIN32)
   set(QTMAIN Qt5::WinMain)
 
 elseif (UNIX)
-  set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} cryptonote/external/miniupnpc/minissdpc.c)
+  set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} katonycoin/external/miniupnpc/minissdpc.c)
   if (APPLE)
     enable_language(ASM)
     file(GLOB_RECURSE OBJC_SOURCES src/*.mm)
@@ -228,8 +228,8 @@ elseif (UNIX)
   endif (APPLE)
 endif ()
 
-include_directories(cryptonote/src/Platform/${PLATFORM_DIR})
-file(GLOB PLATFORM_SOURCES cryptonote/src/Platform/${PLATFORM_DIR}/System/*)
+include_directories(katonycoin/src/Platform/${PLATFORM_DIR})
+file(GLOB PLATFORM_SOURCES katonycoin/src/Platform/${PLATFORM_DIR}/System/*)
 set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} ${PLATFORM_SOURCES})
 
 add_library(${CRYPTONOTE_LIB} STATIC ${CRYPTONOTE_SOURCES})

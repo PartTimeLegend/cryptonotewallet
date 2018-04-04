@@ -1,0 +1,3 @@
+[submodule "katonycoin"]
+	path = katonycoin
+	url = https://github.com/PartTimeLegend/katonycoin.git
